@@ -1,34 +1,44 @@
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../store/redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/redux/hooks';
 import { useGetSearchedStockQuery } from '../../store/services/storeApiCalls';
 import { SearchApisType } from '../../store/types';
 import SearchedItem from './SearchedItem';
 import './SearchResults.scss';
+import { v4 as uuidv4 } from 'uuid';
+import { getDetailsOf } from '../../store/slices/stockSlice';
 
 const SearchResults = () => {
   const [apiData, setapiData] = useState<SearchApisType[] | []>([]);
   const stockNameToSearch = useAppSelector(
     (state) => state.stockSlice.searchStockName
   );
-
+  const dispatch = useAppDispatch();
   const { data, isLoading, isError, isSuccess } =
-    useGetSearchedStockQuery('acc');
+    useGetSearchedStockQuery(stockNameToSearch) || undefined;
 
-  const dataRecieved = apiData.length > 1;
+  const dataRecieved = apiData?.length > 1;
+
+  useEffect(() => {
+    if (!data || isError) {
+      console.log('no data');
+    }
+  }, [data]);
 
   useEffect(() => {
     if (data && isSuccess) {
       setapiData(data.bestMatches);
     }
-    console.log(stockNameToSearch);
-  }, [stockNameToSearch && isSuccess]);
+  }, [stockNameToSearch, data]);
 
-  const handleClickItem = (stockName: string) => {
-    console.log('1');
+  const handleClickItem = (stockName: string): void => {
+    if (stockName) {
+      dispatch(getDetailsOf(stockName));
+    }
   };
 
   return (
     <div className="search-res">
+      {isLoading && <h1>Loading...</h1>}
       {dataRecieved &&
         apiData.map(
           ({
@@ -38,7 +48,7 @@ const SearchResults = () => {
             '8. currency': currency,
           }) => (
             <SearchedItem
-              key={name}
+              key={uuidv4()}
               handleClickItem={handleClickItem}
               stockName={name}
               symbol={symbol}

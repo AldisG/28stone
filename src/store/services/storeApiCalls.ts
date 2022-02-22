@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // full api example -> https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=coc&apikey=03D5ECWZDFY4FLM
+// full api example -> https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=IBM&apikey=03D5ECWZDFY4FLM
 const apiKey = '&apikey=03D5ECWZDFY4FLM'
 
 const apiFunctions = {

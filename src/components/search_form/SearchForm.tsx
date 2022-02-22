@@ -1,15 +1,20 @@
 import { FormEvent, useState } from 'react';
 import searchIcn from '../../img/search.svg';
-import { useAppDispatch } from '../../store/redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/redux/hooks';
 import { searchFor as searchForSlice } from '../../store/slices/stockSlice';
 import './SearchForm.scss';
 
 const SearchForm = () => {
   const [searchFor, setSearchFor] = useState<string>('');
   const dispatch = useAppDispatch();
+  const currentSearch = useAppSelector(
+    (state) => state.stockSlice.searchStockName
+  );
   const handleSearch = (e: any) => {
     e.preventDefault();
-    dispatch(searchForSlice(searchFor));
+    if (searchFor && searchFor !== currentSearch) {
+      dispatch(searchForSlice(searchFor));
+    }
   };
   return (
     <form className="search-form" onSubmit={handleSearch}>
