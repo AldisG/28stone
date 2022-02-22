@@ -1,0 +1,53 @@
+@import '../../sharedStyles.scss';
+
+.search-res {
+  display: grid;
+  min-height: 100%;
+  max-height: calc(90vh - 4rem);
+  background-color: $veryLightGrey;
+  align-content: start;
+  gap: 0.5rem;
+  overflow: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 0.2rem;
+  border: 0.1rem solid $lightGrey;
+  border-top: none;
+}
+.search-res__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: $white;
+  cursor: pointer;
+  border-right: 0.3rem solid transparent;
+  &:hover {
+    border-right: 0.3rem solid $green;
+  }
+}
+.search-res__head {
+  display: grid;
+  gap: 0.4rem;
+}
+.search-res__header {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.search-res__full-name {
+  color: $grey;
+  // max-width: 10rem;
+}
+.search-res__currency {
+  padding: 0.5rem 1rem;
+  background-color: $green;
+  border-radius: 0.5rem;
+  color: $white;
+  font-weight: 500;
+}
+.search-res__currency {
+  &.negative {
+    background-color: $red;
+  }
+}

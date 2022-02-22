@@ -1,0 +1,38 @@
+@import '../../sharedStyles.scss';
+
+.search-form {
+  position: relative;
+  width: 100%;
+  display: grid;
+}
+
+.search-btn,
+.search-form__input {
+  padding: 1.5rem;
+  outline: none;
+  border: 0.1rem solid $lightGrey;
+  background-color: $white;
+  font-weight: 400;
+}
+.search-form__input {
+  &:focus {
+    border: 0.1rem solid $green;
+    outline: 0.1rem solid $green;
+  }
+}
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 10rem;
+  &:hover {
+    outline: 0.1rem solid $green;
+  }
+}
+.search-btn__icon {
+  width: 1.7rem;
+}
