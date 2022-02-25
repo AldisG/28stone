@@ -15,7 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chart": "^0.1.2",
+    "chart.js": "^3.7.1",
     "react": "^17.0.2",
+    "react-charts": "^3.0.0-beta.35",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {

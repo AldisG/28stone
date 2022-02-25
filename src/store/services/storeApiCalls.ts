@@ -6,7 +6,7 @@ const apiKey = '&apikey=03D5ECWZDFY4FLM'
 
 const apiFunctions = {
   search: '/query?function=SYMBOL_SEARCH&keywords=',
-  timeSeries: '/query?function=GLOBAL_QUOTE&symbol='
+  timeSeries: '/query?function=TIME_SERIES_MONTHLY&symbol='
 }
 
 export const stocksApi = createApi({
