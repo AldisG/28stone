@@ -17,4 +17,14 @@ export type ExtraDetailsMetaType = {
   "3. Last Refreshed": string,
   "4. Time Zone": string,
 }
+
+export type DailyStars = {
+  date: string | number;
+  stars: string | number;
+};
+
+export type Series = {
+  label: string;
+  data: DailyStars[];
+};
 export default { }
