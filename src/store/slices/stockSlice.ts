@@ -4,6 +4,7 @@ const initialState = {
   searchStockName: '',
   getMoreDetailsOfStock: '',
   gotDataFromApiSearch: false,
+  gotDataFromApiSuggestions: false,
 };
 
 const stockSlice = createSlice({
@@ -18,9 +19,12 @@ const stockSlice = createSlice({
     },
     checkApiDataStatus: (state, {payload}) =>{
       state.gotDataFromApiSearch = payload
+    },
+    checkApiDataSuggestions: (state, {payload}) =>{
+      state.gotDataFromApiSuggestions = payload
     }
   },
 });
 
-export const { searchFor, getDetailsOf, checkApiDataStatus } = stockSlice.actions
+export const { searchFor, getDetailsOf, checkApiDataStatus, checkApiDataSuggestions } = stockSlice.actions
 export default stockSlice.reducer;

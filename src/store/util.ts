@@ -14,4 +14,11 @@ export const chartColors = [
   {label: 'Close', color: '#53cfc9'}
 ]
 
+export const animateSearch = {
+  start: {},
+  animate: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 20 },
+  exit: { opacity: 0, y: -20 },
+  transition: { duration: 0.5 },
+};
 export default{}

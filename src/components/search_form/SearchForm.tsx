@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/redux/hooks';
 import {
   checkApiDataStatus,
+  checkApiDataSuggestions,
   searchFor as searchForSlice,
 } from '../../store/slices/stockSlice';
 import './SearchForm.scss';
@@ -24,12 +25,14 @@ const SearchForm = () => {
     if (searchFor && searchFor !== currentSearch) {
       dispatch(searchForSlice(searchFor));
       dispatch(checkApiDataStatus(true));
+      dispatch(checkApiDataSuggestions(true));
     }
   };
 
   return (
     <form className="search-form" onSubmit={handleSearch}>
       <input
+        data-testid="search-input"
         className="search-form__input"
         type="text"
         placeholder="Search..."

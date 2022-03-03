@@ -39,7 +39,6 @@ const StockDetails = () => {
   }, [data, dailyDataOf]);
 
   useEffect(() => {
-    console.log('loading started');
     if (data) {
       setfetchingDetailsFromApi(true);
     }

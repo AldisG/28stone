@@ -18,7 +18,7 @@
 }
 .search-section-wrapper {
   display: grid;
-  grid-template-rows: 35rem 1fr;
+  grid-template-rows: max-content 1fr;
   justify-items: center;
 }
 .search-section {
