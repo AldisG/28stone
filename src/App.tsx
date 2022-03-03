@@ -17,9 +17,11 @@ const App = () => {
       animate={initial.end}
       className="App"
     >
-      <div className="search-section">
-        <SearchForm />
-        <SearchResults />
+      <div className="search-section-wrapper">
+        <div className="search-section">
+          <SearchForm />
+          <SearchResults />
+        </div>
       </div>
       <StockDetails />
     </motion.div>

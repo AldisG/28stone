@@ -22,7 +22,7 @@ const SearchedItem: FC<Props> = ({
         <span className="search-res__full-name">{stockName}</span>
       </div>
       <div className="search-res__type">{type}</div>
-      <div className="search-res__currency negative">{currency}</div>
+      <div className="search-res__currency">{currency}</div>
     </div>
   );
 };

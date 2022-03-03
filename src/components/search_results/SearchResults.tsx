@@ -5,24 +5,30 @@ import { SearchApisType } from '../../store/types';
 import SearchedItem from './SearchedItem';
 import './SearchResults.scss';
 import { v4 as uuidv4 } from 'uuid';
-import { getDetailsOf } from '../../store/slices/stockSlice';
+import {
+  checkApiDataStatus,
+  getDetailsOf,
+} from '../../store/slices/stockSlice';
 
 const SearchResults = () => {
   const [apiData, setapiData] = useState<SearchApisType[] | []>([]);
   const stockNameToSearch = useAppSelector(
-    (state) => state.stockSlice.searchStockName
+    ({ stockSlice }) => stockSlice.searchStockName
+  );
+  const stillGettingData = useAppSelector(
+    ({ stockSlice }) => stockSlice.gotDataFromApiSearch
   );
   const dispatch = useAppDispatch();
-  const { data, isLoading, isError, isSuccess } =
+  const { data, isError, isSuccess } =
     useGetSearchedStockQuery(stockNameToSearch) || undefined;
 
   const dataRecieved = apiData?.length > 1;
 
   useEffect(() => {
-    if (!data || isError) {
-      console.log('no data');
+    if (dataRecieved || !dataRecieved) {
+      dispatch(checkApiDataStatus(false));
     }
-  }, [data]);
+  }, [apiData]);
 
   useEffect(() => {
     if (data && isSuccess) {
@@ -38,7 +44,7 @@ const SearchResults = () => {
 
   return (
     <div className="search-res">
-      {isLoading && <h1>Loading...</h1>}
+      {isError && 'Found nothging?'}
       {dataRecieved &&
         apiData.map(
           ({

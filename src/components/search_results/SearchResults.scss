@@ -2,7 +2,7 @@
 
 .search-res {
   display: grid;
-  min-height: 100%;
+  height: min-content;
   max-height: calc(90vh - 4rem);
   background-color: $veryLightGrey;
   align-content: start;
@@ -22,9 +22,12 @@
   padding: 1rem;
   background-color: $white;
   cursor: pointer;
-  border-right: 0.3rem solid transparent;
+  border: 0.3rem solid transparent;
   &:hover {
     border-right: 0.3rem solid $green;
+  }
+  &:active {
+    border: 0.3rem solid $green;
   }
 }
 .search-res__head {
@@ -37,7 +40,6 @@
 }
 .search-res__full-name {
   color: $grey;
-  // max-width: 10rem;
 }
 .search-res__currency {
   padding: 0.5rem 1rem;
@@ -45,9 +47,4 @@
   border-radius: 0.5rem;
   color: $white;
   font-weight: 500;
-}
-.search-res__currency {
-  &.negative {
-    background-color: $red;
-  }
 }

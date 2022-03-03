@@ -1,0 +1,55 @@
+@import '../../sharedStyles.scss';
+
+.graph-container {
+  width: max-content;
+}
+.span--bolder-text {
+  font-size: 3rem;
+  color: $black;
+}
+.stock-header {
+  width: 100%;
+  padding-bottom: 0.6rem;
+  color: $darkGrey;
+}
+.graph-wrapper {
+  display: grid;
+  gap: 2rem;
+}
+.graph {
+  min-width: 25rem;
+  height: 40rem;
+  max-width: 50rem;
+}
+.graph-slider {
+  display: grid;
+  gap: 0.4rem;
+  & input {
+    width: 16rem;
+  }
+}
+.explanation-wrapper {
+  display: flex;
+  gap: 2rem;
+}
+.explanation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $grey;
+}
+.color-ball {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1.5rem;
+}
+// --- errors
+.error-wrapper {
+  font-size: 1.4rem;
+  text-align: center;
+}
+.error-message {
+  max-width: 30rem;
+  padding: 1rem 0;
+}

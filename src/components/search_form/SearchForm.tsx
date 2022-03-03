@@ -1,21 +1,32 @@
 import { FormEvent, useState } from 'react';
-import searchIcn from '../../img/search.svg';
 import { useAppDispatch, useAppSelector } from '../../store/redux/hooks';
-import { searchFor as searchForSlice } from '../../store/slices/stockSlice';
+import {
+  checkApiDataStatus,
+  searchFor as searchForSlice,
+} from '../../store/slices/stockSlice';
 import './SearchForm.scss';
+import SubmitButton from './SubmitButton';
 
 const SearchForm = () => {
   const [searchFor, setSearchFor] = useState<string>('');
   const dispatch = useAppDispatch();
+
   const currentSearch = useAppSelector(
     (state) => state.stockSlice.searchStockName
   );
+
+  const stillGettingData = useAppSelector(
+    ({ stockSlice }) => stockSlice.gotDataFromApiSearch
+  );
+
   const handleSearch = (e: any) => {
     e.preventDefault();
     if (searchFor && searchFor !== currentSearch) {
       dispatch(searchForSlice(searchFor));
+      dispatch(checkApiDataStatus(true));
     }
   };
+
   return (
     <form className="search-form" onSubmit={handleSearch}>
       <input
@@ -29,9 +40,7 @@ const SearchForm = () => {
         }}
         autoFocus={true}
       />
-      <button className="flex-c-c search-btn">
-        <img className="search-btn__icon" src={searchIcn} />
-      </button>
+      <SubmitButton stillGettingData={stillGettingData} />
     </form>
   );
 };

@@ -1,51 +1,82 @@
 @import './sharedStyles.scss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap');
-*,
-*::before,
-*::after {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-decoration: none;
-  box-sizing: border-box;
-}
-a {
-  color: $black;
-}
-img {
-  width: 100%;
-}
-html {
-  font-size: 62.5%;
-  font-family: 'Inter', sans-serif;
-  color: $black;
-}
-body,
-input,
-button {
-  font-family: 'Inter', sans-serif;
-}
-button {
-  cursor: pointer;
-}
-// h1,h2,h3,h4,h5,h6{}
-.logo {
-  width: 300px;
-}
-.App {
-  display: flex;
-  width: 100%;
-  // min-height: 100vh;
-  padding: 2rem 1rem;
-}
-.search-section {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  padding: 0 1rem;
-  width: 30rem;
-}
+@import './initialState.scss';
+
 .flex-c-c {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.App {
+  display: flex;
+  justify-content: start;
+  gap: 5rem;
+  padding: 2rem 1rem;
+  max-width: 85rem;
+  min-width: 35rem;
+  margin: 0 auto;
+}
+.search-section-wrapper {
+  display: grid;
+  grid-template-rows: 35rem 1fr;
+  justify-items: center;
+}
+.search-section {
+  width: 30rem;
+}
+.search-res__head {
+  width: 100%;
+}
+.search-res__full-name {
+  max-width: 100px;
+}
+// Loading element ---
+.loading-wrapper {
+  gap: 2rem;
+}
+.loading__text {
+  font-size: 2rem;
+}
+// Animate elements ---
+.loading__element {
+  width: 100%;
+  height: 100%;
+  animation-name: rotate;
+  animation-duration: 0.6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+// Screen size ---
+@media screen and (max-width: 700px) {
+  .App {
+    display: grid;
+    gap: 8rem;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .graph {
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+  .graph-container {
+    padding: 0 2rem;
+    display: grid;
+    justify-items: center;
+  }
+  .graph-wrapper {
+    display: grid;
+    gap: 2rem;
+  }
+  .search-res {
+    max-height: calc(40rem - 4rem);
+  }
 }
