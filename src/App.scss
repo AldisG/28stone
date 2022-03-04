@@ -1,20 +1,30 @@
-@import './sharedStyles.scss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap');
+@import './sharedStyles.scss';
 @import './initialState.scss';
+
+body {
+  background-color: $blue;
+}
 
 .flex-c-c {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.App-wrapper {
+  min-height: 100vh;
+  height: 100%;
+}
 .App {
   display: flex;
   justify-content: start;
   gap: 5rem;
-  padding: 2rem 1rem;
+  padding: 2rem;
   max-width: 85rem;
   min-width: 35rem;
   margin: 0 auto;
+  background-color: $white;
+  border-radius: 2rem;
 }
 .search-section-wrapper {
   display: grid;

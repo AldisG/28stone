@@ -77,6 +77,7 @@ const SearchResults = () => {
                     currency={currency}
                     type={type}
                     key={uuidv4()}
+                    data-testid="search-res"
                   />
                 </motion.div>
               </AnimatePresence>

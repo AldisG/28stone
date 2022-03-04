@@ -7,20 +7,22 @@ import { initial } from './store/util';
 
 const App = () => {
   return (
-    <motion.div
-      variants={initial}
-      initial={initial.start}
-      animate={initial.end}
-      className="App"
-    >
-      <div className="search-section-wrapper">
-        <div className="search-section">
-          <SearchForm />
-          <SearchResults />
+    <div className="flex-c-c App-wrapper">
+      <motion.div
+        variants={initial}
+        initial={initial.start}
+        animate={initial.end}
+        className="App"
+      >
+        <div className="search-section-wrapper">
+          <div className="search-section">
+            <SearchForm />
+            <SearchResults />
+          </div>
         </div>
-      </div>
-      <StockDetails />
-    </motion.div>
+        <StockDetails />
+      </motion.div>
+    </div>
   );
 };
 

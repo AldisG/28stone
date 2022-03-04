@@ -35,7 +35,7 @@ const SearchForm = () => {
         data-testid="search-input"
         className="search-form__input"
         type="text"
-        placeholder="Search..."
+        placeholder="Search for a stock..."
         value={searchFor}
         onInput={(e: FormEvent<HTMLInputElement>) => {
           const target = e.target as HTMLInputElement;

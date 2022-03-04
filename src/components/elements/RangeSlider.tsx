@@ -11,6 +11,7 @@ const RangeSlider: FC<Props> = ({ apiResultLength, setapiResultLength }) => {
       Amount of data to display
       <input
         type="range"
+        data-testid="chart-slider"
         min={10}
         step={10}
         max={200}

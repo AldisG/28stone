@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import App from '../App';
@@ -16,5 +16,11 @@ describe('Render input', () =>{
     render(AppElement);
     const billInput = screen.getByTestId("search-input")
     expect(billInput).toBeInTheDocument()
+  });
+
+  it('Should focus Input bar on load', () => {
+    render(AppElement);
+    const billInput = screen.getByTestId("search-input")
+    expect(document.activeElement).toEqual(billInput)
   });
 })
