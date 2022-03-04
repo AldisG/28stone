@@ -1,8 +1,5 @@
 @import '../../sharedStyles.scss';
 
-.graph-container {
-  width: max-content;
-}
 .span--bolder-text {
   font-size: 3rem;
   color: $black;
@@ -15,11 +12,15 @@
 .graph-wrapper {
   display: grid;
   gap: 2rem;
+  min-width: 33rem;
+  max-width: 55rem;
+  width: 100%;
 }
 .graph {
-  min-width: 25rem;
-  height: 40rem;
+  width: 25rem;
+  width: 100%;
   max-width: 50rem;
+  height: 40rem;
 }
 .graph-slider {
   display: grid;

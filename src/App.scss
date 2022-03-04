@@ -14,6 +14,7 @@ body {
 .App-wrapper {
   min-height: 100vh;
   height: 100%;
+  width: 100% !important;
 }
 .App {
   display: flex;
@@ -21,7 +22,6 @@ body {
   gap: 5rem;
   padding: 2rem;
   max-width: 85rem;
-  min-width: 35rem;
   margin: 0 auto;
   background-color: $white;
   border-radius: 2rem;
