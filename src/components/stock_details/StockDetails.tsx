@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Chart } from 'react-charts';
 import { useAppSelector } from '../../store/redux/hooks';
 import { useGetDailyDataQuery } from '../../store/services/storeApiCalls';
-import { convertDataToCorrectNum } from '../../store/util';
+import { animateDetails, convertDataToCorrectNum } from '../../store/util';
 import { DailyStars, Series } from '../../store/types';
 import ErrorFetchingData from '../elements/ErrorFetchingData';
-import RangeSlider from '../elements/RangeSlider';
-import StockDetailsHeader from './StockDetailsHeader';
-import ChartTags from './ChartTags';
-
+import { AnimatePresence, motion } from 'framer-motion';
 import './StockDetails.scss';
 import LoadingElement from '../elements/LoadingElement';
+import StockDetailsChart from './StockDetailsChart';
 
 const StockDetails = () => {
   const [searchDataOpen, setSearchDataOpen] = useState<DailyStars[]>([]);
@@ -49,17 +46,15 @@ const StockDetails = () => {
 
     if (data) {
       if (data['Monthly Time Series']) {
-        const dataArray = Object.values(data['Monthly Time Series']).slice(
+        const dataArr = Object.values(data['Monthly Time Series']).slice(
           0,
           apiResultLength
         ) as string[];
 
-        setSearchDataOpen(convertDataToCorrectNum(dataArray, '1. open') || []);
-        setSearchDataHigh(convertDataToCorrectNum(dataArray, '2. high') || []);
-        setSearchDataLow(convertDataToCorrectNum(dataArray, '3. low') || []);
-        setSearchDataClose(
-          convertDataToCorrectNum(dataArray, '4. close') || []
-        );
+        setSearchDataOpen(convertDataToCorrectNum(dataArr, '1. open') || []);
+        setSearchDataHigh(convertDataToCorrectNum(dataArr, '2. high') || []);
+        setSearchDataLow(convertDataToCorrectNum(dataArr, '3. low') || []);
+        setSearchDataClose(convertDataToCorrectNum(dataArr, '4. close') || []);
         setfailedToGetData(false);
         setInitialLoadState(false);
       }
@@ -102,41 +97,30 @@ const StockDetails = () => {
   );
   return (
     <>
-      {fetchingDetailsFromApi && (
-        <div className="graph-container">
-          <LoadingElement size={2.8} withText={true} />
-        </div>
-      )}
-      {showErrorInfo && (
-        <div className="graph-container">
-          <ErrorFetchingData isError={failedToGetData} />
-        </div>
-      )}
-      {!isError && !failedToGetData && (
-        <div className="graph-container">
-          {safeToShowChart && (
-            <div className="graph-wrapper">
-              <StockDetailsHeader
+      {fetchingDetailsFromApi && <LoadingElement size={2.8} withText={true} />}
+
+      {showErrorInfo && <ErrorFetchingData isError={failedToGetData} />}
+
+      {!isError && !failedToGetData && !fetchingDetailsFromApi && (
+        <AnimatePresence exitBeforeEnter>
+          <motion.div
+            initial={animateDetails.initial}
+            animate={animateDetails.animate}
+            exit={animateDetails.exit}
+            className="graph-container"
+          >
+            {safeToShowChart && (
+              <StockDetailsChart
                 dailyDataOf={dailyDataOf}
                 apiResultLength={apiResultLength}
-              />
-              <div className="graph">
-                <Chart
-                  options={{
-                    data: stockDataForChart,
-                    primaryAxis,
-                    secondaryAxes,
-                  }}
-                />
-              </div>
-              <ChartTags stockDataForChart={stockDataForChart} />
-              <RangeSlider
-                apiResultLength={apiResultLength}
+                stockDataForChart={stockDataForChart}
+                primaryAxis={primaryAxis}
+                secondaryAxes={secondaryAxes}
                 setapiResultLength={setapiResultLength}
               />
-            </div>
-          )}
-        </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
       )}
     </>
   );

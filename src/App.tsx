@@ -3,17 +3,7 @@ import { motion } from 'framer-motion';
 import SearchForm from './components/search_form/SearchForm';
 import SearchResults from './components/search_results/SearchResults';
 import StockDetails from './components/stock_details/StockDetails';
-
-const initial = {
-  start: {
-    opacity: 0,
-    y: -30,
-  },
-  end: {
-    opacity: 1,
-    y: 0,
-  },
-};
+import { initial } from './store/util';
 
 const App = () => {
   return (
